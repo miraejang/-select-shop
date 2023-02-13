@@ -20,10 +20,19 @@
 
 .userBox {
   display: flex;
+  align-items: center;
   font-size: 0.9rem;
 }
 
 .userBox li {
   margin: 0.2rem;
   padding: 0.4rem;
+}
+
+.cart {
+  font-size: 1.6rem;
+}
+
+.userBox button {
+  background-color: transparent;
 }

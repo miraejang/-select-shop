@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { login, logout, onUserSateChanged } from '../../api/firebase';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 import styles from './Header.module.css';
 
 export default function Header() {
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    onUserSateChanged(setUser);
+  }, []);
+
+  const handleLogin = () => {
+    login().then(setUser);
+  };
+  const handleLogout = () => {
+    logout(() => setUser(null));
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -34,11 +49,20 @@ export default function Header() {
         </ul>
       </nav>
       <ul className={styles.userBox}>
-        <li>
-          <Link to='cart'>Cart</Link>
+        <li className={styles.cart}>
+          <Link to='cart'>
+            <AiOutlineShoppingCart />
+          </Link>
         </li>
+        {user && (
+          <li>
+            <Link to='admin'>Admin</Link>
+          </li>
+        )}
+        {user && <li>{user.displayName}님</li>}
         <li>
-          <Link to='login'>Login</Link>
+          {!user && <button onClick={handleLogin}>login</button>}
+          {user && <button onClick={handleLogout}>logout</button>}
         </li>
       </ul>
     </header>
