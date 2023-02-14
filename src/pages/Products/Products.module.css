@@ -1,15 +1,3 @@
-.products {
-  padding: 5rem 1rem;
-}
-
-
-.title {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2rem;
-  font-size: 1.6rem;
-}
-
 .productsBox {
   display: flex;
   justify-content: center;

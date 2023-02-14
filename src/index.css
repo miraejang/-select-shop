@@ -1,6 +1,12 @@
 :root {
+  --brand-color: #575fcf;
+  --active-color: #0fbcf9;
+  --success-color: #0be881;
+  --error-color: #ff3f34;
+  --gray: #808e9b;
   --black: #000;
   --white: #fff;
+  --red: #ff0000;
 }
 
 body {
@@ -10,10 +16,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  accent-color: var(--brand-color);
 }
 
 * {
   box-sizing: border-box;
+  letter-spacing: 0.02rem;
 }
 
 code {
@@ -21,7 +29,7 @@ code {
     monospace;
 }
 
-h1, h2, h3, h4, h5, h6, div, ul {
+h1, h2, h3, h4, h5, h6, div, ul, p {
   margin: 0;
   padding: 0;
 }
@@ -35,9 +43,27 @@ a {
   text-decoration: none;
 }
 
+input {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--gray);
+  outline: none;
+}
+
+input:focus-visible {
+  border-color: var(--active-color);
+}
+
 button {
   font-size: inherit;
   color: inherit;
   text-transform: inherit;
   cursor: pointer;
+  border: 0;
+  outline: none;
+}
+
+.pageTitle {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 1.8rem;
 }

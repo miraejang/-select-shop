@@ -1,27 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { login, logout, onUserSateChanged } from '../../api/firebase';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import styles from './Header.module.css';
+import { useAuthContext } from '../../context/AuthContext';
 
 export default function Header() {
-  const [user, setUser] = useState();
-
-  useEffect(() => {
-    onUserSateChanged(setUser);
-  }, []);
-
-  const handleLogin = () => {
-    login().then(setUser);
-  };
-  const handleLogout = () => {
-    logout(() => setUser(null));
-  };
+  const { user, login, logout } = useAuthContext();
 
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        <h1>Select Shop</h1>
+        <Link to='/'>
+          <h1>Select Shop</h1>
+        </Link>
       </div>
       <nav className={styles.nav}>
         <ul>
@@ -43,9 +34,6 @@ export default function Header() {
           <li>
             <NavLink to='sale'>Sale</NavLink>
           </li>
-          <li>
-            <NavLink to='new'>New</NavLink>
-          </li>
         </ul>
       </nav>
       <ul className={styles.userBox}>
@@ -61,8 +49,8 @@ export default function Header() {
         )}
         {user && <li>{user.displayName}님</li>}
         <li>
-          {!user && <button onClick={handleLogin}>login</button>}
-          {user && <button onClick={handleLogout}>logout</button>}
+          {!user && <button onClick={login}>login</button>}
+          {user && <button onClick={logout}>logout</button>}
         </li>
       </ul>
     </header>

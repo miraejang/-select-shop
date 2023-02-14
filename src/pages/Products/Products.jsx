@@ -7,13 +7,13 @@ export default function Products() {
   const { pathname } = useLocation();
 
   return (
-    <section className={styles.products}>
-      <div className={styles.title}>
-        <h2>{pathname.replace(/^\//, '').toLocaleUpperCase()}</h2>
-      </div>
+    <>
+      <h2 className='pageTitle'>
+        {pathname.replace(/^\//, '').toLocaleUpperCase()}
+      </h2>
       <div className={styles.productsBox}>
         <ProductsBox />
       </div>
-    </section>
+    </>
   );
 }

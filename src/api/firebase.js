@@ -6,6 +6,8 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
 } from 'firebase/auth';
+import { getDatabase, ref, set, get } from 'firebase/database';
+import { v4 as uuid } from 'uuid';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -21,17 +23,38 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
+const database = getDatabase(app);
 
 export async function login() {
-  return signInWithPopup(auth, provider)
-    .then((result) => result.user)
-    .catch(console.log);
+  signInWithPopup(auth, provider).catch(console.error);
 }
 
 export async function logout() {
-  return signOut(auth).catch(console.log);
+  signOut(auth).catch(console.error);
 }
 
 export async function onUserSateChanged(callback) {
-  return onAuthStateChanged(auth, (user) => callback(user));
+  return onAuthStateChanged(auth, (user) => {
+    if (user) {
+      callback(user);
+    } else {
+      callback(null);
+    }
+  });
+}
+
+export async function addProducts(product) {
+  const id = uuid();
+  set(ref(database, `products/${id}`), { id, ...product });
+}
+
+export async function getProducts() {
+  return get(ref(database, `products`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return Object.values(snapshot.val());
+      }
+      return null;
+    })
+    .catch(console.error);
 }
