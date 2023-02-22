@@ -6,7 +6,7 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
 } from 'firebase/auth';
-import { getDatabase, ref, set, get } from 'firebase/database';
+import { getDatabase, ref, set, get, remove } from 'firebase/database';
 import { v4 as uuid } from 'uuid';
 
 const firebaseConfig = {
@@ -57,4 +57,24 @@ export async function getProducts() {
       return null;
     })
     .catch(console.error);
+}
+
+export async function addCart(uid, product) {
+  set(ref(database, `users/${uid}/cart/${product.id}`), product);
+}
+
+export async function getCart(uid) {
+  return get(ref(database, `users/${uid}/cart`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return Object.values(snapshot.val());
+      } else {
+        console.log('No data available');
+      }
+    })
+    .catch(console.error);
+}
+
+export async function removeFromCart(uid, productId) {
+  remove(ref(database, `users/${uid}/cart/${productId}`));
 }

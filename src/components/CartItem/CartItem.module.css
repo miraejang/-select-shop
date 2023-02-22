@@ -1,0 +1,54 @@
+.row {
+  padding: 0.5rem;
+}
+
+.row td {
+  text-align: center;
+}
+
+.image {
+  overflow: hidden;
+  position: relative;
+  width: 12.5rem;
+  height: 12.5rem;
+}
+
+.image img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+.product {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.details {
+  flex: 1;
+  padding-left: 1rem;
+  text-align: left;
+}
+
+.details select {
+  margin-top: 2rem;
+  margin-right: 1rem;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.option {
+  margin-top: 0.3rem;
+}
+
+.quantity input {
+  width: 4rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}

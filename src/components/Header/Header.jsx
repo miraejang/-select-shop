@@ -3,9 +3,13 @@ import { Link, NavLink } from 'react-router-dom';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import styles from './Header.module.css';
 import { useAuthContext } from '../../context/AuthContext';
+import useCart from '../hooks/useCart';
 
 export default function Header() {
   const { user, login, logout } = useAuthContext();
+  const {
+    cartQuery: { data: cartProducts },
+  } = useCart();
 
   return (
     <header className={styles.header}>
@@ -39,7 +43,12 @@ export default function Header() {
       <ul className={styles.userBox}>
         <li className={styles.cart}>
           <Link to='cart'>
-            <AiOutlineShoppingCart />
+            <div className={styles.cartIcon}>
+              {cartProducts && (
+                <div className={styles.count}>{cartProducts.length}</div>
+              )}
+              <AiOutlineShoppingCart />
+            </div>
           </Link>
         </li>
         {user && (

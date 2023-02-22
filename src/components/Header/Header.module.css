@@ -33,6 +33,23 @@
   font-size: 1.6rem;
 }
 
+.cartIcon {
+  position: relative;
+}
+
+.count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  padding: 0.2rem 0.5rem;
+  background-color: var(--brand-color);
+  border-radius: 50%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
 .userBox button {
   background-color: transparent;
 }

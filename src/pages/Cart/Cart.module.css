@@ -1,0 +1,92 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart {
+  flex: 1;
+  padding-right: 2rem
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 2px solid var(--black);
+  border-bottom: 1px solid var(--black);
+}
+
+.table thead {
+  border-bottom: 1px solid var(--border-gray);
+}
+
+.table th {
+  padding: 2rem 0;
+}
+
+.table tbody td {
+  padding: 0.5rem 0;
+}
+
+.table tbody tr+tr {
+  border-top: 1px solid var(--border-light-gray);
+}
+
+.table tbody tr:first-child td {
+  padding-top: 3rem;
+}
+
+.table tbody tr:last-child td {
+  padding-bottom: 3rem;
+}
+
+.payment {
+  position: relative;
+  flex-basis: 300px;
+
+  /* display: flex;
+  justify-content: space-between; */
+  text-align: center;
+}
+
+.paymentContainer {
+  position: absolute;
+  width: 100%;
+  background-color: var(--light-gray);
+}
+
+.title {
+  padding: 2rem;
+  border-bottom: 1px solid var(--border-gray);
+}
+
+.payment button {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--black);
+  color: var(--white)
+}
+
+.priceBox {
+  padding: 1rem;
+}
+
+.priceBox p {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.priceBox .total {}
+
+.priceBox .total::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin: 1rem 0;
+  background-color: var(--border-gray);
+}
+
+.lightText {
+  color: var(--text-light);
+}

@@ -4,9 +4,14 @@
   --success-color: #0be881;
   --error-color: #ff3f34;
   --gray: #808e9b;
+  --light-gray: #f2f2f2;
   --black: #000;
   --white: #fff;
   --red: #ff0000;
+  --border-gray: #ababab;
+  --border-light-gray: #f2f2f2;
+  --text-default: #000;
+  --text-light: #333;
 }
 
 body {

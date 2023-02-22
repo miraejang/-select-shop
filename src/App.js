@@ -9,14 +9,14 @@ function App() {
   return (
     <div>
       <AuthProvider>
-        <Header />
-        <main className={styles.main}>
-          <div className={styles.container}>
-            <QueryClientProvider client={queryClient}>
+        <QueryClientProvider client={queryClient}>
+          <Header />
+          <main className={styles.main}>
+            <div className={styles.container}>
               <Outlet />
-            </QueryClientProvider>
-          </div>
-        </main>
+            </div>
+          </main>
+        </QueryClientProvider>
       </AuthProvider>
     </div>
   );
