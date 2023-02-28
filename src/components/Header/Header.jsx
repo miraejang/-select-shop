@@ -53,6 +53,11 @@ export default function Header() {
         </li>
         {user && (
           <li>
+            <Link to='mypage'>My</Link>
+          </li>
+        )}
+        {user && (
+          <li>
             <Link to='admin'>Admin</Link>
           </li>
         )}

@@ -34,12 +34,20 @@ export async function logout() {
 }
 
 export async function onUserSateChanged(callback) {
-  return onAuthStateChanged(auth, (user) => {
-    if (user) {
-      callback(user);
-    } else {
-      callback(null);
+  return onAuthStateChanged(auth, async (user) => {
+    const updatedUser = user ? await adminUser(user) : null;
+    callback(updatedUser);
+  });
+}
+
+async function adminUser(user) {
+  return get(ref(database, 'admins')).then((snapshot) => {
+    if (snapshot.exists()) {
+      const admins = snapshot.val();
+      const isAdmin = admins.includes(user.uid);
+      return { ...user, isAdmin };
     }
+    return user;
   });
 }
 
@@ -49,7 +57,7 @@ export async function addProducts(product) {
 }
 
 export async function getProducts() {
-  return get(ref(database, `products`))
+  return get(ref(database, 'products'))
     .then((snapshot) => {
       if (snapshot.exists()) {
         return Object.values(snapshot.val());
