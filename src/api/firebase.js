@@ -26,7 +26,12 @@ const auth = getAuth();
 const database = getDatabase(app);
 
 export async function login() {
-  signInWithPopup(auth, provider).catch(console.error);
+  signInWithPopup(
+    auth,
+    provider.setCustomParameters({
+      prompt: 'select_account',
+    })
+  ).catch(console.error);
 }
 
 export async function logout() {
