@@ -24,7 +24,7 @@ export default function ProductsDetail() {
 
   useEffect(() => {
     likeItems && setLike(Object.keys(likeItems).includes(id));
-  }, [likeItems]);
+  }, [likeItems, id]);
 
   const handleAddCart = () => {
     if (selected === null) return;
