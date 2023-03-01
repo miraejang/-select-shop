@@ -11,18 +11,18 @@ export default function Products() {
   const { data: products } = useQuery(['products'], () => getProducts());
 
   const filteredProducts = products && getFilteredProducts(page, products);
+  const hasProdcuts =
+    filteredProducts && filteredProducts.length > 0 ? true : false;
   return (
     <>
       <h2 className='pageTitle'>
         {pathname.replace(/^\//, '').toLocaleUpperCase()}
       </h2>
       <div className={styles.products}>
-        {filteredProducts && filteredProducts.length === 0 && (
+        {page === 'new' && !hasProdcuts && (
           <p>10일 이내의 새로 등록된 상품이 없습니다.</p>
         )}
-        {filteredProducts && filteredProducts.length > 0 && (
-          <ProductsBox products={filteredProducts} />
-        )}
+        {hasProdcuts && <ProductsBox products={filteredProducts} />}
       </div>
     </>
   );
