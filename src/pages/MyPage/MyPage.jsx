@@ -21,7 +21,9 @@ export default function MyPage() {
       </section>
       <section className={styles.section}>
         <h3 className={styles.title}>My ❤ Items</h3>
-        <ProductsBox products={products} />
+        <div className={styles.likeList}>
+          <ProductsBox products={products} />
+        </div>
       </section>
     </>
   );
