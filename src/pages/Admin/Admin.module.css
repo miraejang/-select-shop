@@ -13,21 +13,21 @@
   align-items: center;
 }
 
-.form div {
+.form > div {
   display: flex;
   align-items: center;
   width: 100%;
   padding: 1rem 0;
 }
 
-.form .required label:before {
+.form .required .title:before {
   content: '*';
   margin-right: 0.1rem;
   font-size: 1.2em;
   color: var(--red)
 }
 
-.form label {
+.form .title {
   flex-shrink: 0;
   width: 6rem;
   font-weight: bold;
@@ -37,4 +37,15 @@
 
 .form input {
   flex: 1;
+}
+
+.radioBox {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-light-gray);
+  text-transform: capitalize;
+}
+
+.radioBox + .radioBox {
+  margin-left: 1rem;
 }

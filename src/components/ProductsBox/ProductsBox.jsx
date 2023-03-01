@@ -1,12 +1,8 @@
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { getProducts } from '../../api/firebase';
 import ProductCard from '../ProductCard/ProductCard';
 import styles from './ProductsBox.module.css';
 
-export default function ProductsBox() {
-  const { data: products } = useQuery(['products'], () => getProducts());
-
+export default function ProductsBox({ products }) {
   return (
     <div className={styles.products}>
       <ul>
