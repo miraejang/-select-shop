@@ -32,7 +32,6 @@ function getFilteredProducts(page, products) {
   const now = Date.now();
   const displayTerm = 1000 * 60 * 60 * 24 * 10;
 
-  if (page === '') return products;
   if (page === 'new') {
     return products.filter((product) => now - product.createAt <= displayTerm);
   } else {

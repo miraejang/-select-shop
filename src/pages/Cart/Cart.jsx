@@ -13,8 +13,8 @@ export default function Cart() {
   const totalPrice =
     items &&
     items.reduce((total, item) => (total += item.price * item.quantity), 0);
-
-  if (isLoading) return <p>Loadding...</p>;
+    
+  if (isLoading) return <p>Loading...</p>;
   return (
     <>
       <h2 className='pageTitle'>Cart</h2>
