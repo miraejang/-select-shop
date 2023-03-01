@@ -8,7 +8,9 @@ export default function ProductCard({ product }) {
   return (
     <li>
       <Link to={`/products/${id}`} state={{ product }}>
-        <img className={styles.image} src={image} alt='' />
+        <div className={styles.image}>
+          <img src={image} alt={name} />
+        </div>
         <div className={styles.info}>
           <p className={styles.name}>{name}</p>
           <p className={styles.desc}>{desc}</p>
