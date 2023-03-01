@@ -1,18 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import useCart from '../../components/hooks/useCart';
+import { BsSuitHeartFill, BsSuitHeart } from 'react-icons/bs';
 import Button from '../../ui/button/Button';
 import styles from './ProductsDetail.module.css';
+import useLikeList from '../../components/hooks/useLikeList';
 
 export default function ProductsDetail() {
   const {
     state: {
       product,
-      product: { image, name, price, desc, options },
+      product: { id, image, name, price, desc, options },
     },
   } = useLocation();
   const [selected, setSelected] = useState();
   const { addOrUpdateItem } = useCart();
+  const {
+    likeItemsQuery: { data: likeItems },
+    addLikeItem,
+    removeLikeItem,
+  } = useLikeList();
+  const [like, setLike] = useState();
+
+  useEffect(() => {
+    likeItems && setLike(Object.keys(likeItems).includes(id));
+  }, [likeItems]);
 
   const handleAddCart = () => {
     if (selected === null) return;
@@ -24,6 +36,13 @@ export default function ProductsDetail() {
   };
   const handleChange = (e) => {
     setSelected(e.target.value);
+  };
+  const handleLikeList = () => {
+    if (like) {
+      removeLikeItem.mutate(id);
+    } else {
+      addLikeItem.mutate({ ...product });
+    }
   };
 
   return (
@@ -56,6 +75,10 @@ export default function ProductsDetail() {
           </div>
         )}
         <Button onClick={handleAddCart}>Add Cart</Button>
+        <button onClick={handleLikeList} className={styles.likeBtn}>
+          {!like && <BsSuitHeart />}
+          {like && <BsSuitHeartFill style={{ color: 'red' }} />}
+        </button>
       </div>
     </div>
   );

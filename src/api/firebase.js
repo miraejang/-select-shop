@@ -86,3 +86,23 @@ export async function getCart(uid) {
 export async function removeFromCart(uid, productId) {
   remove(ref(database, `users/${uid}/cart/${productId}`));
 }
+
+export async function addLikeList(uid, product) {
+  set(ref(database, `users/${uid}/likeList/${product.id}`), product);
+}
+
+export async function getLikeList(uid) {
+  return get(ref(database, `users/${uid}/likeList`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        console.log('No data available');
+      }
+    })
+    .catch(console.error);
+}
+
+export async function removeFromLikeList(uid, productId) {
+  remove(ref(database, `users/${uid}/likeList/${productId}`));
+}
