@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { addProducts } from '../../api/firebase';
+
 import { imageUploader } from '../../api/imageUploader';
+import useProducts from '../../components/hooks/useProducts';
 import Button from '../../ui/button/Button';
 import styles from './Admin.module.css';
 
@@ -8,19 +9,33 @@ const categories = ['women', 'men', 'beauty', 'life', 'sale'];
 export default function Admin() {
   const [product, setProducts] = useState({});
   const [file, setFile] = useState();
+  const [isUploading, setIsUploading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const { addNewProduct } = useProducts();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const now = Date.now();
-    imageUploader(file).then((url) => {
-      addProducts({
-        ...product,
-        price: parseInt(product.price, 10),
-        createdAt: now,
-        lastUpdate: now,
-        image: url,
-      });
-    });
+    setIsUploading(true);
+    imageUploader(file) //
+      .then((url) => {
+        addNewProduct.mutate(
+          {
+            ...product,
+            price: parseInt(product.price, 10),
+            createdAt: now,
+            lastUpdate: now,
+            image: url,
+          },
+          {
+            onSuccess: () => {
+              setSuccess(true);
+              setTimeout(() => setSuccess(false), 4000);
+            },
+          }
+        );
+      })
+      .finally(() => setIsUploading(false));
     setProducts({});
     setFile();
     e.target.reset();
@@ -115,7 +130,10 @@ export default function Admin() {
               </div>
             ))}
           </div>
-          <Button>상품 등록</Button>
+          {success && <p>✅ 상품이 등록되었습니다.</p>}
+          <Button disabled={isUploading}>
+            {isUploading ? '상품 등록중' : '상품 등록'}
+          </Button>
         </form>
       </div>
     </>
