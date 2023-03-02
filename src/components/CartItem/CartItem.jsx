@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
-import useCart from '../hooks/useCart';
+import useCart from '../../hooks/useCart';
 import styles from './CartItem.module.css';
 
 export default function CartItem({

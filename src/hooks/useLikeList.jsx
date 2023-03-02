@@ -1,9 +1,5 @@
-import {
-  addLikeList,
-  getLikeList,
-  removeFromLikeList,
-} from '../../api/firebase';
-import { useAuthContext } from '../../context/AuthContext';
+import { addLikeList, getLikeList, removeFromLikeList } from '../api/firebase';
+import { useAuthContext } from '../context/AuthContext';
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 
 export default function useLikeList() {

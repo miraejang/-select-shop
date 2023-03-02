@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-import styles from './Header.module.css';
 import { useAuthContext } from '../../context/AuthContext';
-import useCart from '../hooks/useCart';
+import useCart from '../../hooks/useCart';
+import styles from './Header.module.css';
 
 export default function Header() {
   const { user, login, logout } = useAuthContext();

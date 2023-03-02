@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { imageUploader } from '../../api/imageUploader';
-import useProducts from '../../components/hooks/useProducts';
+import useProducts from '../../hooks/useProducts';
 import Button from '../../ui/button/Button';
 import styles from './Admin.module.css';
 

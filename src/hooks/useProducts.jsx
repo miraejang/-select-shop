@@ -1,10 +1,10 @@
-import { getProducts, addProduct } from '../../api/firebase';
+import { getProducts, addProduct } from '../api/firebase';
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 
 export default function useProducts() {
   const queryClient = useQueryClient();
 
-  const productQuery = useQuery(['products'], () => getProducts(), {
+  const productsQuery = useQuery(['products'], () => getProducts(), {
     stateTime: 1000 * 60 * 5,
   });
 
@@ -14,5 +14,5 @@ export default function useProducts() {
     },
   });
 
-  return { productQuery, addNewProduct };
+  return { productsQuery, addNewProduct };
 }

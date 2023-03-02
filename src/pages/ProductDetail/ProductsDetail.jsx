@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import useCart from '../../components/hooks/useCart';
+import useCart from '../../hooks/useCart';
 import { BsSuitHeartFill, BsSuitHeart } from 'react-icons/bs';
 import Button from '../../ui/button/Button';
 import styles from './ProductsDetail.module.css';
-import useLikeList from '../../components/hooks/useLikeList';
+import useLikeList from '../../hooks/useLikeList';
 
 export default function ProductsDetail() {
   const {

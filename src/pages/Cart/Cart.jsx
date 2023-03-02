@@ -1,5 +1,5 @@
 import React from 'react';
-import useCart from '../../components/hooks/useCart';
+import useCart from '../../hooks/useCart';
 import CartItem from '../../components/CartItem/CartItem';
 import styles from './Cart.module.css';
 
@@ -13,7 +13,7 @@ export default function Cart() {
   const totalPrice =
     items &&
     items.reduce((total, item) => (total += item.price * item.quantity), 0);
-    
+
   if (isLoading) return <p>Loading...</p>;
   return (
     <>

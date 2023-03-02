@@ -1,11 +1,11 @@
 import React from 'react';
 import ProductCard from '../ProductCard/ProductCard';
-import useProducts from '../../components/hooks/useProducts';
+import useProducts from '../../hooks/useProducts';
 import styles from './ProductsBox.module.css';
 
 export default function ProductsBox({ page = 'home' }) {
   const {
-    productQuery: { isLoading, data: products },
+    productsQuery: { isLoading, data: products },
   } = useProducts();
 
   const filteredProducts = !isLoading && getFilteredProducts(page, products);
@@ -17,7 +17,7 @@ export default function ProductsBox({ page = 'home' }) {
         <p>10일 이내의 새로 등록된 상품이 없습니다.</p>
       )}
       <ul>
-      {hasProdcuts &&
+        {hasProdcuts &&
           filteredProducts.map((product) => (
             <ProductCard product={product} key={product.id} />
           ))}
