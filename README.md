@@ -1,5 +1,6 @@
 # Select Shop
-사용자가 물건을 구입할 수 있고, 관리자는 상품을 관리할 수 있는 쇼핑몰 앱입니다.
+사용자가 물건을 구입할 수 있고, 관리자는 상품을 관리할 수 있는 쇼핑몰 앱입니다.   
+https://select-shop.netlify.app
 
 ## 사용 기술
 React, Yarn Berry, React Query, React router, React icons, Firebase (Authentication, Realtime Database), Cloudinary, uuid, Netlify
