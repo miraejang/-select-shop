@@ -6,7 +6,7 @@ export default function ProtectedRoute({ children, requireAdmin }) {
   const { user } = useAuthContext();
 
   if (user === undefined) {
-    return;
+    return <p>Loading...</p>;
   } else {
     if (user === null || (requireAdmin && !user.isAdmin)) {
       return <Navigate to='/' replace />;

@@ -22,7 +22,7 @@ export default function Header() {
         <ul>
           <li>
             <NavLink
-              className={({ isActive }) => isActive && styles.active}
+              className={({ isActive }) => (isActive ? styles.active : '')}
               to='new'
             >
               New
@@ -30,7 +30,7 @@ export default function Header() {
           </li>
           <li>
             <NavLink
-              className={({ isActive }) => isActive && styles.active}
+              className={({ isActive }) => (isActive ? styles.active : '')}
               to='women'
             >
               Women
@@ -38,7 +38,7 @@ export default function Header() {
           </li>
           <li>
             <NavLink
-              className={({ isActive }) => isActive && styles.active}
+              className={({ isActive }) => (isActive ? styles.active : '')}
               to='men'
             >
               Men
@@ -46,7 +46,7 @@ export default function Header() {
           </li>
           <li>
             <NavLink
-              className={({ isActive }) => isActive && styles.active}
+              className={({ isActive }) => (isActive ? styles.active : '')}
               to='beauty'
             >
               Beauty
@@ -54,7 +54,7 @@ export default function Header() {
           </li>
           <li>
             <NavLink
-              className={({ isActive }) => isActive && styles.active}
+              className={({ isActive }) => (isActive ? styles.active : '')}
               to='life'
             >
               Life
@@ -62,7 +62,7 @@ export default function Header() {
           </li>
           <li>
             <NavLink
-              className={({ isActive }) => isActive && styles.active}
+              className={({ isActive }) => (isActive ? styles.active : '')}
               to='sale'
             >
               Sale
@@ -73,7 +73,7 @@ export default function Header() {
       <ul className={styles.userBox}>
         <li className={styles.cart}>
           <NavLink
-            className={({ isActive }) => isActive && styles.active}
+            className={({ isActive }) => (isActive ? styles.active : '')}
             to='cart'
           >
             <div className={styles.cartIcon}>
@@ -87,17 +87,17 @@ export default function Header() {
         {user && (
           <li>
             <NavLink
-              className={({ isActive }) => isActive && styles.active}
+              className={({ isActive }) => (isActive ? styles.active : '')}
               to='mypage'
             >
               My
             </NavLink>
           </li>
         )}
-        {user && (
+        {user && user.isAdmin && (
           <li>
             <NavLink
-              className={({ isActive }) => isActive && styles.active}
+              className={({ isActive }) => (isActive ? styles.active : '')}
               to='admin'
             >
               Admin
@@ -110,6 +110,6 @@ export default function Header() {
           {user && <button onClick={logout}>logout</button>}
         </li>
       </ul>
-    </header>
+  </header>
   );
 }
