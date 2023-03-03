@@ -27,7 +27,7 @@
   padding: 0.5rem 0;
 }
 
-.table tbody tr+tr {
+.table tbody tr + tr {
   border-top: 1px solid var(--border-light-gray);
 }
 
@@ -75,8 +75,6 @@
   justify-content: space-between;
   padding: 1rem;
 }
-
-.priceBox .total {}
 
 .priceBox .total::before {
   content: '';

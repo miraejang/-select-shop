@@ -21,44 +21,87 @@ export default function Header() {
       <nav className={styles.nav}>
         <ul>
           <li>
-            <NavLink to='new'>New</NavLink>
+            <NavLink
+              className={({ isActive }) => isActive && styles.active}
+              to='new'
+            >
+              New
+            </NavLink>
           </li>
           <li>
-            <NavLink to='women'>Women</NavLink>
+            <NavLink
+              className={({ isActive }) => isActive && styles.active}
+              to='women'
+            >
+              Women
+            </NavLink>
           </li>
           <li>
-            <NavLink to='men'>Men</NavLink>
+            <NavLink
+              className={({ isActive }) => isActive && styles.active}
+              to='men'
+            >
+              Men
+            </NavLink>
           </li>
           <li>
-            <NavLink to='beauty'>Beauty</NavLink>
+            <NavLink
+              className={({ isActive }) => isActive && styles.active}
+              to='beauty'
+            >
+              Beauty
+            </NavLink>
           </li>
           <li>
-            <NavLink to='life'>Life</NavLink>
+            <NavLink
+              className={({ isActive }) => isActive && styles.active}
+              to='life'
+            >
+              Life
+            </NavLink>
           </li>
           <li>
-            <NavLink to='sale'>Sale</NavLink>
+            <NavLink
+              className={({ isActive }) => isActive && styles.active}
+              to='sale'
+            >
+              Sale
+            </NavLink>
           </li>
         </ul>
       </nav>
       <ul className={styles.userBox}>
         <li className={styles.cart}>
-          <Link to='cart'>
+          <NavLink
+            className={({ isActive }) => isActive && styles.active}
+            to='cart'
+          >
             <div className={styles.cartIcon}>
               {cartProducts && (
                 <div className={styles.count}>{cartProducts.length}</div>
               )}
               <AiOutlineShoppingCart />
             </div>
-          </Link>
+          </NavLink>
         </li>
         {user && (
           <li>
-            <Link to='mypage'>My</Link>
+            <NavLink
+              className={({ isActive }) => isActive && styles.active}
+              to='mypage'
+            >
+              My
+            </NavLink>
           </li>
         )}
         {user && (
           <li>
-            <Link to='admin'>Admin</Link>
+            <NavLink
+              className={({ isActive }) => isActive && styles.active}
+              to='admin'
+            >
+              Admin
+            </NavLink>
           </li>
         )}
         {user && <li>{user.displayName}님</li>}

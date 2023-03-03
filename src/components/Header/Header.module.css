@@ -1,5 +1,6 @@
 .header {
   display: flex;
+  z-index: 10;
   justify-content: space-between;
   align-items: center;
   position: fixed;
@@ -18,8 +19,35 @@
 }
 
 .nav a {
+  position: relative;
   margin: 0.2rem;
   padding: 0.4rem;
+  font-weight: bold;
+}
+
+.nav a.active,
+.nav a:hover,
+.userBox a.active,
+.userBox a:hover,
+.userBox button:hover {
+  color: var(--brand-color);
+}
+
+.nav a:after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: var(--brand-color);
+  transition: all 0.5s;
+}
+
+.nav a:hover:after,
+.nav a.active:after {
+  width: 100%;
 }
 
 .userBox {
@@ -31,6 +59,10 @@
 .userBox li {
   margin: 0.2rem;
   padding: 0.4rem;
+}
+
+.userBox li a {
+  font-weight: bold;
 }
 
 .cart {
@@ -52,8 +84,10 @@
   text-align: center;
   font-weight: bold;
   font-size: 0.8rem;
+  color: var(--white);
 }
 
 .userBox button {
   background-color: transparent;
+  font-weight: bold;
 }
