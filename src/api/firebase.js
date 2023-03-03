@@ -72,6 +72,10 @@ export async function getProducts() {
     .catch(console.error);
 }
 
+export async function removeProduct(productId) {
+  remove(ref(database, `products/${productId}`));
+}
+
 export async function addCart(uid, product) {
   set(ref(database, `users/${uid}/cart/${product.id}`), product);
 }

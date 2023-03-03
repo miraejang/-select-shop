@@ -11,6 +11,8 @@ import ProductsDetail from './pages/ProductDetail/ProductsDetail';
 import Cart from './pages/Cart/Cart';
 import ProtectedRoute from './components/ProtectedRoute';
 import MyPage from './pages/MyPage/MyPage';
+import ProductsManagement from './components/ProductsManagement/ProductsManagement';
+import AddNewProduct from './components/AddNewProduct/AddNewProduct';
 
 const router = createBrowserRouter([
   {
@@ -69,6 +71,16 @@ const router = createBrowserRouter([
             <Admin />
           </ProtectedRoute>
         ),
+        children: [
+          {
+            path: 'product-management',
+            element: <ProductsManagement />,
+          },
+          {
+            path: 'add-product',
+            element: <AddNewProduct />,
+          },
+        ],
       },
     ],
   },
