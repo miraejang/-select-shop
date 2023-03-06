@@ -3,11 +3,17 @@
 https://select-shop.netlify.app   
 　　　   
 ## 사용 기술
-<img src="https://img.shields.io/badge/React-darkblue?style=for-the-badge"> <img src="https://img.shields.io/badge/Yarn Berry-darkblue?style=for-the-badge"> 
-<img src="https://img.shields.io/badge/React Query-darkblue?style=for-the-badge"> <img src="https://img.shields.io/badge/React router-darkblue?style=for-the-badge"> 
-<img src="https://img.shields.io/badge/React icons-darkblue?style=for-the-badge"> <img src="https://img.shields.io/badge/PostCSS-darkblue?style=for-the-badge"> 
-<img src="https://img.shields.io/badge/Firebase-darkblue?style=for-the-badge"> <img src="https://img.shields.io/badge/Cloudinary-darkblue?style=for-the-badge"> 
-<img src="https://img.shields.io/badge/uuid-darkblue?style=for-the-badge"> <img src="https://img.shields.io/badge/Netlify-darkblue?style=for-the-badge">   
+![image](https://user-images.githubusercontent.com/45534877/223015746-26a1430d-4374-423f-91fa-f82d9d5557aa.png)   
+![image](https://user-images.githubusercontent.com/45534877/223015876-cc49972a-72ff-4425-b5ba-0dac0543469b.png)   
+![image](https://user-images.githubusercontent.com/45534877/223016045-d00eedb4-6d6a-441f-89c7-d9582db1fc11.png)   
+![image](https://user-images.githubusercontent.com/45534877/223016606-38f42f2e-949a-497a-b5c0-e35e3beeeded.png)   
+![image](https://user-images.githubusercontent.com/45534877/223016182-8e14198d-f587-4ded-9b3c-b0f999b7c6ea.png)   
+![image](https://user-images.githubusercontent.com/45534877/223011885-62f0c74e-6c14-4e7b-81c3-cc6a31a2c042.png)  
+![image](https://user-images.githubusercontent.com/45534877/223020255-4fe8cc88-7be6-4c3b-a67c-097ad95eedd5.png) ![image](https://user-images.githubusercontent.com/45534877/223018781-4434bc63-6bc4-4223-938a-f8d6e29a5827.png)
+![image](https://user-images.githubusercontent.com/45534877/223018562-8e653bb4-f1b7-4f92-bbbd-87be97dbb050.png)   
+![image](https://user-images.githubusercontent.com/45534877/223019827-4f1a3fad-7b28-4cd7-9f8e-631b6944650c.png)   
+![image](https://user-images.githubusercontent.com/45534877/223061890-5f89c2f6-d50d-4e89-95dd-e3af6978a928.png)   
+　　　　<img src="https://img.shields.io/badge/uuid-darkblue?style=for-the-badge">  
 　　　   
 ## 기술 상세 내용
 ### React
