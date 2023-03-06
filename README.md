@@ -3,7 +3,11 @@
 https://select-shop.netlify.app   
 　　　   
 ## 사용 기술
-React, Yarn Berry, React Query, React router, React icons, Firebase (Authentication, Realtime Database), Cloudinary, uuid, Netlify   
+<img src="https://img.shields.io/badge/React-darkblue?style=for-the-badge"> <img src="https://img.shields.io/badge/Yarn Berry-darkblue?style=for-the-badge"> 
+<img src="https://img.shields.io/badge/React Query-darkblue?style=for-the-badge"> <img src="https://img.shields.io/badge/React router-darkblue?style=for-the-badge"> 
+<img src="https://img.shields.io/badge/React icons-darkblue?style=for-the-badge"> <img src="https://img.shields.io/badge/PostCSS-darkblue?style=for-the-badge"> 
+<img src="https://img.shields.io/badge/Firebase-darkblue?style=for-the-badge"> <img src="https://img.shields.io/badge/Cloudinary-darkblue?style=for-the-badge"> 
+<img src="https://img.shields.io/badge/uuid-darkblue?style=for-the-badge"> <img src="https://img.shields.io/badge/Netlify-darkblue?style=for-the-badge">   
 　　　   
 ## 기술 상세 내용
 ### React
