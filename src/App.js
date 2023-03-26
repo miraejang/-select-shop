@@ -7,7 +7,7 @@ import { AuthProvider } from './context/AuthContext';
 const queryClient = new QueryClient();
 function App() {
   return (
-    <div>
+    <div className={styles.app}>
       <AuthProvider>
         <QueryClientProvider client={queryClient}>
           <Header />

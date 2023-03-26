@@ -4,6 +4,7 @@ import useCart from '../../hooks/useCart';
 import CartItem from '../../components/CartItem/CartItem';
 import styles from './Cart.module.css';
 import Checkbox from '../../ui/Checkbox/Checkbox';
+import Loading from '../../components/Loading/Loading';
 
 const SHIPPING = 3000;
 const FREE_SHIPPING = 70000;
@@ -60,7 +61,7 @@ export default function Cart() {
     navigate('/order', { state: items });
   };
 
-  if (isCartLoading || isLoading) return <p>Loading...</p>;
+  if (isCartLoading || isLoading) return <Loading />;
   return (
     <>
       <h2 className='pageTitle'>Cart</h2>

@@ -1,4 +1,5 @@
 import React from 'react';
+import Loading from '../components/Loading/Loading';
 import ProductsBox from '../components/ProductsBox/ProductsBox';
 import useProducts from '../hooks/useProducts';
 
@@ -7,5 +8,6 @@ export default function Main() {
     productsQuery: { isLoading, data: products },
   } = useProducts();
 
-  return <>{!isLoading && <ProductsBox products={products} />}</>;
+  if (isLoading) return <Loading />;
+  return <ProductsBox products={products} />;
 }
