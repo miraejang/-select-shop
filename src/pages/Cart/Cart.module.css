@@ -40,16 +40,13 @@
 }
 
 .payment {
-  position: relative;
   flex-basis: 300px;
-
-  /* display: flex;
-  justify-content: space-between; */
   text-align: center;
 }
 
 .paymentContainer {
-  position: absolute;
+  position: sticky;
+  top: 86px;
   width: 100%;
   background-color: var(--light-gray);
 }
@@ -57,13 +54,7 @@
 .title {
   padding: 2rem;
   border-bottom: 1px solid var(--border-gray);
-}
-
-.payment button {
-  width: 100%;
-  padding: 1rem;
-  background-color: var(--black);
-  color: var(--white)
+  font-weight: bold;
 }
 
 .priceBox {
@@ -87,4 +78,25 @@
 
 .lightText {
   color: var(--text-light);
+}
+
+.btnBox {
+  padding-bottom: 1rem;
+}
+
+.btnBox button {
+  width: 94%;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: var(--black);
+  color: var(--white);
+  transition: background-color 0.3s;
+}
+
+.btnBox button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.btnBox button + button {
+  margin-top: 0.5rem;
 }

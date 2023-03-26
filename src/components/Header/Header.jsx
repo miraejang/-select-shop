@@ -8,7 +8,7 @@ import styles from './Header.module.css';
 export default function Header() {
   const { user, login, logout } = useAuthContext();
   const {
-    cartQuery: { data: cartProducts },
+    cartQuery: { data: cartItems },
   } = useCart();
 
   return (
@@ -77,8 +77,10 @@ export default function Header() {
             to='cart'
           >
             <div className={styles.cartIcon}>
-              {cartProducts && (
-                <div className={styles.count}>{cartProducts.length}</div>
+              {cartItems && (
+                <div className={styles.count}>
+                  {Object.keys(cartItems).length}
+                </div>
               )}
               <AiOutlineShoppingCart />
             </div>
@@ -110,6 +112,6 @@ export default function Header() {
           {user && <button onClick={logout}>logout</button>}
         </li>
       </ul>
-  </header>
+    </header>
   );
 }

@@ -84,7 +84,7 @@ export async function getCart(uid) {
   return get(ref(database, `users/${uid}/cart`))
     .then((snapshot) => {
       if (snapshot.exists()) {
-        return Object.values(snapshot.val());
+        return snapshot.val();
       } else {
         console.log('No data available');
       }

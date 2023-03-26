@@ -1,35 +1,45 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
 import useCart from '../../hooks/useCart';
+import Checkbox from '../../ui/Checkbox/Checkbox';
 import styles from './CartItem.module.css';
 
 export default function CartItem({
-  product,
-  product: { id, name, image, options, option, price, quantity },
+  item,
+  item: { id, name, image, options, option, price, quantity },
+  checkedState,
+  onChecked,
 }) {
   const { addOrUpdateItem, removeItem } = useCart();
   const [selected, setSelected] = useState();
+  const [checked, setChecked] = useState();
 
-  const handleChange = (e) => {
+  useEffect(() => {
+    if (checkedState) {
+      setChecked(checkedState);
+    }
+  }, [checkedState]);
+
+  const handleOptionChange = (e) => {
     setSelected(e.target.value);
   };
   const handleOption = () => {
     if (!selected) return;
-    addOrUpdateItem.mutate({ ...product, option: selected });
+    addOrUpdateItem.mutate({ ...item, option: selected });
     setSelected();
   };
   const handleQuantity = (e) => {
     addOrUpdateItem.mutate({
-      ...product,
+      ...item,
       quantity: parseInt(e.target.value, 10),
     });
   };
   const handleAdd = () => {
-    addOrUpdateItem.mutate({ ...product, quantity: quantity + 1 });
+    addOrUpdateItem.mutate({ ...item, quantity: quantity + 1 });
   };
   const handleMinus = () => {
     if (quantity < 2) return;
-    addOrUpdateItem.mutate({ ...product, quantity: quantity - 1 });
+    addOrUpdateItem.mutate({ ...item, quantity: quantity - 1 });
   };
   const handleDelete = () => {
     removeItem.mutate(id);
@@ -37,6 +47,12 @@ export default function CartItem({
 
   return (
     <tr className={styles.row}>
+      <td>
+        <Checkbox
+          checked={checked}
+          onChange={(e) => onChecked({ [id]: e.target.checked })}
+        />
+      </td>
       <td className={styles.product}>
         <div className={styles.image}>
           <img src={image} alt={name} />
@@ -48,7 +64,7 @@ export default function CartItem({
               <p className={styles.option}>옵션 : {option}</p>
               <select
                 value={selected || 'null'}
-                onChange={handleChange}
+                onChange={handleOptionChange}
                 name='options'
               >
                 <option value='null'>옵션변경</option>
@@ -68,6 +84,9 @@ export default function CartItem({
       </td>
       <td className={styles.price}>{price.toLocaleString()}</td>
       <td className={styles.quantity}>
+        <button onClick={handleMinus} disabled={quantity < 2 && true}>
+          -
+        </button>
         <input
           value={quantity}
           onChange={handleQuantity}
@@ -75,9 +94,6 @@ export default function CartItem({
           name='quantity'
         />
         <button onClick={handleAdd}>+</button>
-        <button onClick={handleMinus} disabled={quantity < 2 && true}>
-          -
-        </button>
       </td>
       <td className={styles.totalPrice}>
         {(price * quantity).toLocaleString()}

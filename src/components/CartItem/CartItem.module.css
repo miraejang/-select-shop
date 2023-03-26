@@ -52,3 +52,36 @@
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
+
+
+/* designdesignCheckbox */
+.designdesignCheckbox {
+  position: relative;
+  display: inline-block;
+}
+
+.icon {
+  font-size: 1.3rem;
+}
+
+.unCheckedIcon {
+  opacity: 0.5;
+}
+
+.label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.input {
+  overflow: hidden;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
