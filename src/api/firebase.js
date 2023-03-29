@@ -86,7 +86,7 @@ export async function getCart(uid) {
       if (snapshot.exists()) {
         return snapshot.val();
       } else {
-        console.log('No data available');
+        return null;
       }
     })
     .catch(console.error);
@@ -104,7 +104,7 @@ export async function getLikeList(uid) {
   return get(ref(database, `users/${uid}/likeList`))
     .then((snapshot) => {
       if (snapshot.exists()) {
-        return snapshot.val();
+      return snapshot.val();
       } else {
         console.log('No data available');
       }

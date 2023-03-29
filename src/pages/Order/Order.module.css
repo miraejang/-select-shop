@@ -1,0 +1,120 @@
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 77.5rem;
+  margin: 0 auto;
+}
+
+.order {
+  flex: 1;
+  padding-right: 2rem
+}
+
+.section + .section {
+  margin-top: 5rem;
+}
+
+.sectionTitle {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 2px solid var(--black);
+  border-bottom: 1px solid var(--black);
+}
+
+.table thead {
+  border-bottom: 1px solid var(--border-gray);
+}
+
+.table th {
+  padding: 1rem 0;
+}
+
+.table tbody td {
+  padding: 0.5rem 0;
+  text-align: center;
+}
+
+.table tbody tr + tr {
+  border-top: 1px solid var(--border-light-gray);
+}
+
+.table tbody tr:first-child td {
+  padding-top: 1rem;
+}
+
+.table tbody tr:last-child td {
+  padding-bottom: 1rem;
+}
+
+.table tbody tr td:first-child {
+  padding-left: 2rem;
+}
+
+.table tbody tr td:last-child {
+  padding-right: 2rem;
+}
+
+.table tbody .product {
+  text-align: left;
+}
+
+.table .th {
+  flex-basis: 160px;
+  padding-left: 2.6rem;
+  text-align: left;
+  font-weight: normal;
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.table .required .th::before {
+  content: '* ';
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: red;
+}
+
+.table .input {
+  text-align: left;
+}
+
+.table .input input {
+  width: 400px;
+}
+
+.table .tel .wrap {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+}
+
+.table .tel input {
+  width: 31%;
+}
+
+.productContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.img {
+  display: inline-block;
+  width: 100px;
+  margin-right: 1rem;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.option {
+  margin-top: 0.5rem;
+  color: var(--text-light);
+}

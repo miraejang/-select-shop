@@ -5,18 +5,19 @@ import CartItem from '../../components/CartItem/CartItem';
 import styles from './Cart.module.css';
 import Checkbox from '../../ui/Checkbox/Checkbox';
 import Loading from '../../components/Loading/Loading';
-
-const SHIPPING = 3000;
-const FREE_SHIPPING = 70000;
+import PaymentBox from '../../components/PaymentBox/PaymentBox';
+import Modal from '../../components/Modal/Modal';
+import ModalMessage from '../../components/ModalMessage/ModalMessage';
 
 export default function Cart() {
   const {
     cartQuery: { isLoading: isCartLoading, data: items },
   } = useCart();
-  const [totalPrice, setTotalPrice] = useState();
   const [checkedStates, setCheckedStates] = useState();
-  const [allSelected, setAllSlected] = useState(false);
+  const [allSelected, setAllSelected] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isPayLoading, setIsPayLoading] = useState(true);
+  const [modalMessage, setModalMessage] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,25 +27,30 @@ export default function Cart() {
     }
     setCheckedStates(obj);
   }, [items]);
-
   useEffect(() => {
-    if (items) {
-      const price = Object.values(items).reduce(
-        (total, item) => (total += item.price * item.quantity),
-        0
-      );
-      setTotalPrice(price);
-    }
-  }, [items]);
-
-  useEffect(() => {
-    if (checkedStates && totalPrice) {
+    if (checkedStates && isPayLoading) {
       setIsLoading(false);
     }
-  }, [checkedStates, totalPrice]);
+  }, [checkedStates, isPayLoading]);
+  useEffect(() => {
+    const values = checkedStates && Object.values(checkedStates);
+    if (values && values.length > 0 && !values.includes(false)) {
+      setAllSelected(true);
+    } else {
+      setAllSelected(false);
+    }
+  }, [checkedStates]);
 
   const handleChecked = (updated) => {
     setCheckedStates((prev) => ({ ...prev, ...updated }));
+  };
+  const handleAllchecked = () => {
+    setAllSelected((prev) => {
+      const obj = { ...checkedStates };
+      Object.keys(obj).map((key) => (obj[key] = !prev));
+      setCheckedStates(obj);
+      return !prev;
+    });
   };
   const handleSelectedOrder = () => {
     const checked = Object.keys(checkedStates).filter(
@@ -54,11 +60,13 @@ export default function Cart() {
     checked.map((id) => list.push(items[id]));
 
     if (list.length > 0) {
-      navigate('/order', { state: { list } });
+      navigate('/order', { state: list });
+    } else {
+      setModalMessage('선택한 상품이 없습니다.');
     }
   };
   const handleAllOrder = () => {
-    navigate('/order', { state: items });
+    navigate('/order', { state: Object.values(items) });
   };
 
   if (isCartLoading || isLoading) return <Loading />;
@@ -74,20 +82,22 @@ export default function Cart() {
                   <Checkbox
                     id='all'
                     checked={allSelected}
-                    onChange={() => setAllSlected((prev) => !prev)}
+                    onChange={handleAllchecked}
                   />
                 </th>
                 <th>상품정보</th>
                 <th>가격</th>
                 <th>수량</th>
-                <th>상품금액</th>
+                <th>상품 금액</th>
                 <th>삭제</th>
               </tr>
             </thead>
             <tbody>
               {!items && (
                 <tr>
-                  <td colSpan={4}>아이템이 없습니다.</td>
+                  <td colSpan={6} className={styles.emptyMessage}>
+                    장바구니에 담긴 상품이 없습니다.
+                  </td>
                 </tr>
               )}
               {items &&
@@ -102,35 +112,21 @@ export default function Cart() {
             </tbody>
           </table>
         </div>
-        <div className={styles.payment}>
-          <div className={styles.paymentContainer}>
-            <p className={styles.title}>주문 금액</p>
-            <div className={styles.priceBox}>
-              <p>
-                <span className={styles.lightText}>총 상품 금액</span>
-                <span>{totalPrice.toLocaleString()} 원</span>
-              </p>
-              <p>
-                <span className={styles.lightText}>배송비</span>
-                <span>
-                  + {totalPrice < FREE_SHIPPING ? SHIPPING.toLocaleString() : 0}{' '}
-                  원
-                </span>
-              </p>
-              <div className={styles.total}>
-                <p>
-                  <span className={styles.lightText}>총 결제금액</span>
-                  <span>{(totalPrice + SHIPPING).toLocaleString()} 원</span>
-                </p>
-              </div>
-            </div>
-            <div className={styles.btnBox}>
-              <button onClick={handleSelectedOrder}>선택상품 주문하기</button>
-              <button onClick={handleAllOrder}>전체 주문하기</button>
-            </div>
-          </div>
-        </div>
+        <PaymentBox
+          list={items && Object.values(items)}
+          onSelectedOrder={handleSelectedOrder}
+          onAllOrder={handleAllOrder}
+          onLoading={(state) => setIsPayLoading(state)}
+        />
       </div>
+      {modalMessage && (
+        <Modal>
+          <ModalMessage
+            message={modalMessage}
+            onClose={() => setModalMessage(null)}
+          />
+        </Modal>
+      )}
     </>
   );
 }

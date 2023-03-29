@@ -13,6 +13,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import MyPage from './pages/MyPage/MyPage';
 import ProductsManagement from './components/ProductsManagement/ProductsManagement';
 import AddNewProduct from './components/AddNewProduct/AddNewProduct';
+import Order from './pages/Order/Order';
 
 const router = createBrowserRouter([
   {
@@ -53,8 +54,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'cart',
-
         element: <Cart />,
+      },
+      {
+        path: 'order',
+        element: <Order />,
       },
       {
         path: 'mypage',

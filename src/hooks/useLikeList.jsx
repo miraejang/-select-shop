@@ -6,7 +6,9 @@ export default function useLikeList() {
   const { uid } = useAuthContext();
   const queryClient = useQueryClient();
 
-  const likeItemsQuery = useQuery(['likeList', uid], () => getLikeList(uid));
+  const likeItemsQuery = useQuery(['likeList', uid], () => getLikeList(uid), {
+    enabled: !!uid,
+  });
 
   const addLikeItem = useMutation((product) => addLikeList(uid, product), {
     onSuccess: () => {

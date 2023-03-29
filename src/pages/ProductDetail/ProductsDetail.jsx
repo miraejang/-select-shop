@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useCart from '../../hooks/useCart';
 import { BsSuitHeartFill, BsSuitHeart } from 'react-icons/bs';
 import Button from '../../ui/button/Button';
 import styles from './ProductsDetail.module.css';
 import useLikeList from '../../hooks/useLikeList';
+import ModalMessage from '../../components/ModalMessage/ModalMessage';
+import Modal from '../../components/Modal/Modal';
 
 export default function ProductsDetail() {
   const {
@@ -14,25 +16,45 @@ export default function ProductsDetail() {
     },
   } = useLocation();
   const [selected, setSelected] = useState();
-  const { addOrUpdateItem } = useCart();
+  const {
+    cartQuery: { data: cartItems },
+    addOrUpdateItem,
+  } = useCart();
   const {
     likeItemsQuery: { data: likeItems },
     addLikeItem,
     removeLikeItem,
   } = useLikeList();
   const [like, setLike] = useState();
+  const [modelMessage, setModaleMessage] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     likeItems && setLike(Object.keys(likeItems).includes(id));
   }, [likeItems, id]);
 
+  const handleBuyNow = () => {
+    if (options && !selected) {
+      setModaleMessage('옵션을 선택해 주세요.');
+    } else {
+      const item = { ...product, quantity: 1, option: selected };
+      navigate('/order', { state: [item] });
+    }
+  };
   const handleAddCart = () => {
-    if (selected === null) return;
-    addOrUpdateItem.mutate({
-      ...product,
-      option: selected || null,
-      quantity: 1,
-    });
+    if (options && !selected) {
+      setModaleMessage('옵션을 선택해 주세요.');
+    } else {
+      if (!cartItems[id]) {
+        addOrUpdateItem.mutate({
+          ...product,
+          option: selected || null,
+          quantity: 1,
+        });
+      } else {
+        setModaleMessage('장바구니에 같은 상품이 있습니다.');
+      }
+    }
   };
   const handleChange = (e) => {
     setSelected(e.target.value);
@@ -74,12 +96,25 @@ export default function ProductsDetail() {
             </select>
           </div>
         )}
-        <Button onClick={handleAddCart}>Add Cart</Button>
-        <button onClick={handleLikeList} className={styles.likeBtn}>
-          {!like && <BsSuitHeart />}
-          {like && <BsSuitHeartFill style={{ color: 'red' }} />}
-        </button>
+        <div className={styles.btnBox}>
+          <Button onClick={handleAddCart}>Add to Cart</Button>
+          <Button onClick={handleBuyNow}>Buy Now</Button>
+          <button onClick={handleLikeList} className={styles.likeBtn}>
+            {!like && <BsSuitHeart />}
+            {like && <BsSuitHeartFill style={{ color: 'red' }} />}
+          </button>
+        </div>
       </div>
+      {modelMessage && (
+        <Modal>
+          <ModalMessage
+            message={modelMessage}
+            onClose={() => {
+              setModaleMessage(null);
+            }}
+          />
+        </Modal>
+      )}
     </div>
   );
 }

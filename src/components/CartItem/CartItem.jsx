@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
 import useCart from '../../hooks/useCart';
 import Checkbox from '../../ui/Checkbox/Checkbox';
@@ -12,13 +12,6 @@ export default function CartItem({
 }) {
   const { addOrUpdateItem, removeItem } = useCart();
   const [selected, setSelected] = useState();
-  const [checked, setChecked] = useState();
-
-  useEffect(() => {
-    if (checkedState) {
-      setChecked(checkedState);
-    }
-  }, [checkedState]);
 
   const handleOptionChange = (e) => {
     setSelected(e.target.value);
@@ -49,7 +42,7 @@ export default function CartItem({
     <tr className={styles.row}>
       <td>
         <Checkbox
-          checked={checked}
+          checked={checkedState}
           onChange={(e) => onChecked({ [id]: e.target.checked })}
         />
       </td>
