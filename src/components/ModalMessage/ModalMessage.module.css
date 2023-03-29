@@ -1,0 +1,12 @@
+.container {
+  text-align: center;
+  padding: 3rem;
+  background-color: var(--smoke-white);
+}
+
+.btn {
+  margin-top: 2rem;
+  padding: 0.5rem 2rem;
+  background-color: #000;
+  color: #fff;
+}
