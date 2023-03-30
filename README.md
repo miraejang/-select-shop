@@ -35,7 +35,7 @@ https://select-shop.netlify.app
   - CD 배포   
 　　　   
 ## 구현 기능
-![image](https://user-images.githubusercontent.com/45534877/228783283-509a68a6-eebe-409c-943c-d77fdabaaaff.png)   
+![image](https://user-images.githubusercontent.com/45534877/228785255-2df543c6-7716-4d24-90a6-d4a429d57651.png)   
 　   
 　   
 　   
